@@ -1,0 +1,7 @@
+[init]
+	defaultBranch = main
+[user]
+    email = 138978873+haruki-nguyen@users.noreply.github.com
+	name = Haruki Nguyen
+[pull]
+	rebase = true
