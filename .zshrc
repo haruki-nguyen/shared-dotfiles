@@ -140,7 +140,18 @@ alias t="touch"
 alias refresh="source ~/.zshrc && cd ~/.dotfiles-linux && stow . && cd -"
 alias py="python3"
 alias cd="z"
-alias update_system="zsh ~/.config/zsh/update-system.zsh"
+unalias update_system 2>/dev/null
+update_system() {
+  if [[ -d "$HOME/.dotfiles-ubuntu-server" ]]; then
+    zsh "$HOME/.config/zsh/ubuntu-server-update-system.zsh"
+  elif [[ -d "$HOME/.dotfiles-linux" ]]; then
+    zsh "$HOME/.config/zsh/update-system.zsh"
+  else
+    echo "ERROR: Could not determine which update script to run." >&2
+    echo "Neither ~/.dotfiles-ubuntu-server nor ~/.dotfiles-linux found." >&2
+    return 1
+  fi
+}
 
 # Git aliases
 alias gits="git status"
